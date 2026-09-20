@@ -1,68 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Milestone Automobiles - Automobile spare parts and lubes.">
   <title>Milestone Automobiles</title>
   <style>
-    :root { --primary: #1f4f8f; --bg: #f4f7fb; --text: #1f2937; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; font-family: Arial, sans-serif; background: var(--bg);
-      color: var(--text); display: flex; justify-content: center;
-      min-height: 100vh; padding: 24px;
+    :root {
+      --indigo: #5865e8;
+      --indigo-dark: #18205f;
+      --page: #f1f4ff;
+      --text: #252943;
+      --muted: #69718c;
+      --white: #fff;
+      --border: #e4e8f7;
+      --green: #20b56b;
     }
-    .card {
-      width: 100%; max-width: 440px; background: white; border-radius: 22px;
-      padding: 30px 22px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.08);
-      margin: auto;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; }
+    .shell {
+      width: min(100% - 16px, 1100px);
+      margin: 10px auto;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 24px;
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 20px 60px rgba(58,71,160,.08);
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px clamp(20px, 5vw, 48px);
+      background: var(--white);
     }
     .logo {
-      width: 78px; height: 78px; border-radius: 50%; background: var(--primary);
-      color: white; display: grid; place-items: center; margin: 0 auto 18px;
-      font-size: 30px; font-weight: bold;
+      color: #e21b2d;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 900;
+      line-height: .92;
+      letter-spacing: -1.5px;
     }
-    h1 { margin: 0 0 8px; font-size: 28px; }
-    .subtitle { color: #64748b; margin-bottom: 24px; }
+    .logo span { color: var(--indigo-dark); }
+    .nav { display: flex; gap: 12px; }
+    .nav a {
+      padding: 10px 17px;
+      border-radius: 12px;
+      color: var(--indigo-dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .nav a:first-child {
+      background: #e9ebff;
+      color: var(--indigo);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 10px;
+      margin: 0 20px;
+      padding: clamp(30px, 5vw, 54px) clamp(22px, 4vw, 42px);
+      overflow: hidden;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #cbd2ff 0%, #e9edff 100%);
+    }
+    .hero-copy { position: relative; z-index: 1; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #46527d;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      color: var(--indigo-dark);
+      font-size: clamp(39px, 5.2vw, 65px);
+      line-height: 1.02;
+      letter-spacing: -2px;
+    }
+    .hero-copy p:not(.eyebrow) {
+      max-width: 510px;
+      margin: 23px 0 0;
+      color: #47527d;
+      font-size: clamp(14px, 1.8vw, 17px);
+    }
+    .hero-line {
+      width: 48px;
+      height: 4px;
+      margin-top: 25px;
+      border-radius: 20px;
+      background: var(--indigo);
+    }
+    .parts-art {
+      display: block;
+      width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 15px rgba(30,39,100,.12));
+    }
+    .main { padding: 18px 20px 30px; }
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
     .button {
-      display: block; text-decoration: none; padding: 15px; border-radius: 12px;
-      margin: 12px 0; font-weight: bold; color: white; background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 68px;
+      padding: 12px 10px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--white);
+      color: var(--indigo-dark);
+      text-align: center;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 7px 20px rgba(55,65,140,.05);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .button.whatsapp { background: #159447; }
-    .button.maps { background: #d94841; }
-    .details { margin-top: 25px; text-align: left; line-height: 1.6; }
-    .details strong { display: inline-block; margin-bottom: 4px; }
-    footer { margin-top: 24px; font-size: 12px; color: #94a3b8; }
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(55,65,140,.1);
+    }
+    .button.primary {
+      border-color: var(--indigo);
+      background: var(--indigo);
+      color: var(--white);
+    }
+    .button-label { display: block; line-height: 1.35; }
+    .button-label small { font-size: 12px; font-weight: 500; opacity: .82; }
+    .icon {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: #e9ebff;
+      color: var(--indigo);
+    }
+    .primary .icon { background: rgba(255,255,255,.72); color: var(--indigo); }
+    .whatsapp .icon { background: #e3faee; color: var(--green); }
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .card {
+      min-width: 0;
+      padding: 27px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: 0 7px 22px rgba(55,65,140,.04);
+    }
+    h2 {
+      margin: 0 0 17px;
+      color: var(--indigo-dark);
+      font-size: 26px;
+      line-height: 1.2;
+    }
+    h2::after {
+      content: "";
+      display: block;
+      width: 38px;
+      height: 3px;
+      margin-top: 10px;
+      border-radius: 20px;
+      background: var(--indigo);
+    }
+    .card p { color: var(--muted); font-size: 14px; }
+    .contact-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f1f8;
+    }
+    .contact-item:last-child { border-bottom: 0; }
+    .contact-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 11px;
+      letter-spacing: .65px;
+      text-transform: uppercase;
+    }
+    .contact-item a {
+      color: var(--indigo);
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 28px;
+      background: #292e54;
+      color: #e1e4ff;
+      font-size: 12px;
+    }
+    svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    @media (max-width: 900px) {
+      .nav { display: none; }
+    }
+    @media (max-width: 650px) {
+      .shell { border-radius: 20px; }
+      .topbar { padding: 20px; }
+      .hero {
+        grid-template-columns: 1fr;
+        margin: 0 10px;
+        padding: 30px 22px 18px;
+        border-radius: 18px;
+      }
+      .parts-art { max-height: 245px; margin-top: 4px; }
+      .main { padding: 14px 10px 20px; }
+      .actions, .content-grid { grid-template-columns: 1fr; }
+      .card { padding: 23px; }
+      footer { flex-direction: column; gap: 6px; text-align: center; }
+    }
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="logo">MA</div>
-    <h1>Milestone Automobiles</h1>
-    <div class="subtitle">Automobile Spare Parts</div>
+  <div class="shell">
+    <header class="topbar">
+      <div class="logo">MILESTONE<br><span>AUTOMOBILES</span></div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-    <a class="button" href="tel:+919895955316">📞 Call Shop</a>
-    <a class="button whatsapp" href="https://wa.me/918714293824" target="_blank" rel="noopener">
-      💬 WhatsApp
-    </a>
-    <a class="button maps"
-       href="https://maps.app.goo.gl/9eo99WpB4wjAhbXB6?g_st=aw"
-       target="_blank" rel="noopener">
-      📍 Get Directions
-    </a>
-
-    <section class="details">
-      <strong>📱 Contact</strong><br />
-      9895955316<br /><br />
-
-      <strong>💬 WhatsApp</strong><br />
-      8714293824<br /><br />
-
-      <strong>📍 Location</strong><br />
-      Alangad P.O., Kottapuram, Aduvathuruthu, Kerala – 683511
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">Your Trusted Auto Parts Partner</p>
+        <h1>Quality Parts.<br>Reliable Journey.</h1>
+        <p>Automobile spare parts and lubes for DOST, Partner, IRIS, ACE, Nissan, Bolero Pick-up and more.</p>
+        <div class="hero-line"></div>
+      </div>
+      <img class="parts-art" src="assets/spare-parts.png" alt="Automobile spare parts including filters, belts, oil containers and clutch components">
     </section>
 
-    <footer>Thank you for visiting Milestone Automobiles.</footer>
-  </main>
+    <main class="main">
+      <section class="actions" aria-label="Quick actions">
+        <a class="button primary" href="tel:+919895955316">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span class="button-label">Call Now<br><small>9895955316</small></span>
+        </a>
+
+        <a class="button whatsapp" href="https://wa.me/918714293824" target="_blank" rel="noopener">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.1A8.5 8.5 0 1 1 20 11.5z"/><path d="M8.5 7.8c.3-.3.7-.3 1-.1l1.1 1.6c.2.3.2.7-.1 1l-.5.5c.6 1.1 1.5 2 2.6 2.6l.5-.5c.3-.3.7-.3 1-.1l1.6 1.1c.3.2.3.7.1 1-.5.6-1.2.9-1.9.8-3.9-.6-6.9-3.6-7.5-7.5-.1-.7.2-1.4.8-1.9z"/></svg>
+          </span>
+          <span class="button-label">WhatsApp<br><small>8714293824</small></span>
+        </a>
+
+        <a class="button" href="https://maps.app.goo.gl/9eo99WpB4wjAhbXB6?g_st=aw" target="_blank" rel="noopener">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </span>
+          <span class="button-label">Get Directions<br><small>Alangad, Kottappuram</small></span>
+        </a>
+      </section>
+
+      <div class="content-grid">
+        <section class="card" id="about">
+          <h2>About Us</h2>
+          <p>Milestone Automobiles is your trusted destination for quality automotive spare parts and lubes. We provide reliable products and support for different vehicle requirements.</p>
+          <p>Our product support includes DOST, Partner, IRIS, ACE, Nissan, Bolero Pick-up.</p>
+        </section>
+
+        <section class="card" id="contact">
+          <h2>Contact Us</h2>
+          <div class="contact-item"><strong>Phone</strong><a href="tel:+919895955316">9895955316</a></div>
+          <div class="contact-item"><strong>WhatsApp</strong><a href="https://wa.me/918714293824" target="_blank" rel="noopener">8714293824</a></div>
+          <div class="contact-item"><strong>Email</strong><a href="mailto:milestoneautospare@gmail.com">milestoneautospare@gmail.com</a></div>
+          <div class="contact-item"><strong>Location</strong><a href="https://maps.app.goo.gl/9eo99WpB4wjAhbXB6?g_st=aw" target="_blank" rel="noopener">Alangad, Kottappuram, Opp. MMT Automation</a></div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div>© 2026 Milestone Automobiles. All Rights Reserved.</div>
+      <div>Quality Parts. Reliable Journey.</div>
+    </footer>
+  </div>
 </body>
 </html>
