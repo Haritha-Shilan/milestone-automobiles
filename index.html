@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milestone Automobiles</title>
+  <style>
+    :root { --primary: #1f4f8f; --bg: #f4f7fb; --text: #1f2937; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: Arial, sans-serif; background: var(--bg);
+      color: var(--text); display: flex; justify-content: center;
+      min-height: 100vh; padding: 24px;
+    }
+    .card {
+      width: 100%; max-width: 440px; background: white; border-radius: 22px;
+      padding: 30px 22px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      margin: auto;
+    }
+    .logo {
+      width: 78px; height: 78px; border-radius: 50%; background: var(--primary);
+      color: white; display: grid; place-items: center; margin: 0 auto 18px;
+      font-size: 30px; font-weight: bold;
+    }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .subtitle { color: #64748b; margin-bottom: 24px; }
+    .button {
+      display: block; text-decoration: none; padding: 15px; border-radius: 12px;
+      margin: 12px 0; font-weight: bold; color: white; background: var(--primary);
+    }
+    .button.whatsapp { background: #159447; }
+    .button.maps { background: #d94841; }
+    .details { margin-top: 25px; text-align: left; line-height: 1.6; }
+    .details strong { display: inline-block; margin-bottom: 4px; }
+    footer { margin-top: 24px; font-size: 12px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">MA</div>
+    <h1>Milestone Automobiles</h1>
+    <div class="subtitle">Automobile Spare Parts</div>
+
+    <a class="button" href="tel:+919895955316">📞 Call Shop</a>
+    <a class="button whatsapp" href="https://wa.me/918714293824" target="_blank" rel="noopener">
+      💬 WhatsApp
+    </a>
+    <a class="button maps"
+       href="https://maps.app.goo.gl/9eo99WpB4wjAhbXB6?g_st=aw"
+       target="_blank" rel="noopener">
+      📍 Get Directions
+    </a>
+
+    <section class="details">
+      <strong>📱 Contact</strong><br />
+      9895955316<br /><br />
+
+      <strong>💬 WhatsApp</strong><br />
+      8714293824<br /><br />
+
+      <strong>📍 Location</strong><br />
+      Alangad P.O., Kottapuram, Aduvathuruthu, Kerala – 683511
+    </section>
+
+    <footer>Thank you for visiting Milestone Automobiles.</footer>
+  </main>
+</body>
+</html>
